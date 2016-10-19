@@ -30,7 +30,6 @@ RUN pip3.4 install redis && pip3.4 install requests && pip3.4 install flask
 
 #复制配置文件
 RUN mv /etc/nginx/sites-available/default ./
-COPY default /etc/nginx/sites-available/
 COPY run.sh ./
 RUN apt-get clean
 
