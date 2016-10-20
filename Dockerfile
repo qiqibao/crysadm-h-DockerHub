@@ -24,8 +24,8 @@ RUN git clone https://github.com/qiqibao/crysadm-4.git
 
 #安装python，redis
 RUN apt-get install -y python3.4 python3.4-dev redis-server
-RUN chmod +x ./crysadm/get-pip.py
-RUN python3.4 ./crysadm/get-pip.py
+RUN chmod +x ./get-pip.py
+RUN python3.4 ./get-pip.py
 RUN pip3.4 install redis && sudo pip3.4 install requests && sudo pip3.4 install flask
 
 #复制配置文件
@@ -34,7 +34,7 @@ COPY default /etc/nginx/sites-available/
 RUN apt-get clean 
 
 #脚本加运行权限
-RUN chmod +x ./crysadm/run.sh ./crysadm/down.sh ./crysadm/setup.sh  ./crysadm/cron.sh
+RUN chmod +x ./run.sh ./down.sh ./setup.sh  ./cron.sh
 #redis数据库保存目录
 VOLUME ["/var/lib/redis"]
 
@@ -50,7 +50,7 @@ WORKDIR /app
 
 RUN chmod +w /set_root_pw.sh
 #添加运行脚本
-RUN echo "/app/crysadm/run.sh" >>/set_root_pw.sh
+RUN echo "/app/run.sh" >>/set_root_pw.sh
 #RUN echo "cron start" >>/set_root_pw.sh
 RUN echo "service nginx start" >>/set_root_pw.sh
 RUN echo "service nginx reload" >>/set_root_pw.sh
